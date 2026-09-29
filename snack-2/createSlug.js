@@ -1,7 +1,17 @@
 export function createSlug(string) {
+    // Validazione
+    if (typeof string !== 'string') {
+        throw new Error('Il titolo deve essere una stringa');
+    }
+
+    if (string.trim() === '') {
+        throw new Error('Il titolo non può essere vuoto');
+    }
+
+    // Trasformazione (Snack 2 + 4)
     return string
-        .toLowerCase()                    // lowercase (Snack 2)
-        .normalize('NFD')                 // separa le lettere dagli accenti
-        .replace(/[\u0300-\u036f]/g, '')  // rimuove i segni diacritici (accenti)
-        .replace(/\s+/g, '-');            // sostituisce spazi (anche multipli) con -
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/\s+/g, '-');
 }
